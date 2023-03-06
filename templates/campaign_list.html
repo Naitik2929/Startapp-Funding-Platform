@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Campaigns</h1>
+    <hr>
+    {% if campaigns %}
+    <ul>
+        {% for campaign in campaigns %}
+        <li>
+            <a href="{% url 'campaign_detail' campaign.id %}">
+                {{ campaign.name }}
+            </a>
+            <br>
+            {{ campaign.description }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No campaigns available.</p>
+    {% endif %}
+</body>
+
+</html>
