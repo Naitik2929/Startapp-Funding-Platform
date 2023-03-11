@@ -16,7 +16,7 @@ class Campaign(models.Model):
     featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     investors = models.ManyToManyField(User, blank=True, related_name='invested_campaigns')
-
+    subscribers=models.IntegerField(default=0)
     def __str__(self):
         return self.name
 

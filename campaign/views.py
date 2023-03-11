@@ -16,11 +16,12 @@ def campaign_list(request):
 @login_required
 def campaign_detail(request, id):
     campaign = get_object_or_404(Campaign, id=id)
-    investor_count = campaign.investors.count()
+    # investor_count = campaign.investors.all().distinct().count()
+    # investor_count = campaign.investors.all().count()
     left=(campaign.end_date-date.today()).days
     context = {
     'campaign': campaign,
-    'subscribers':investor_count,
+    # 'subscribers':investor_count,
     'left_days':left,
      }
     return render(request, 'campaign_detail.html', context)
@@ -36,6 +37,7 @@ def invest(request,id):
             amount=amount
         )
         campaign.current_amount += amount
+        campaign.subscribers+=1
         campaign.save()
         messages.success(request, 'Thank you for your investment!')
         return redirect('dashboard')
