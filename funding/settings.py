@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'authen',
     'campaign',
     'dashboard',
-    'investment',
     # 'django_cleanup.apps.CleanupConfig'
 ]
 

@@ -17,6 +17,7 @@
     <p>Left Days: {{ left_days }}</p>
     <p>Target amount: {{ campaign.goal_amount }}</p>
     <p>Current amount: {{ campaign.current_amount }}</p>
+    <a href="{% url 'payment' campaign.id %}">Invest</a>
 </body>
 
 </html>

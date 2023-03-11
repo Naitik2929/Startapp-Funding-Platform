@@ -9,11 +9,13 @@
 </head>
 
 <body>
-    <h1>Welcome, {{ user.username }}!</h1>
+    <h1>👋Welcome, {{ user.username }}!</h1>
+    <h2><a href="/campaigns/">Browse campaigns</a></h2>
     <p>Your invested campaigns:</p>
     <ul>
         {% for campaign in invested_campaigns %}
-        <li>{{ campaign.name }}</li>
+        <!-- <li>{{ campaign.name }}</li> -->
+        <li><a href="/campaigns/{{campaign.id}}">{{ campaign.name }}</a></li>
         {% empty %}
         <li>You haven't invested in any campaigns yet.</li>
         {% endfor %}

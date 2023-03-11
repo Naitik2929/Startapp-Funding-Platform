@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Campaign
-from .forms import CampaignForm
-# from .forms import CampaignForm, InvestmentForm
+from .models import Campaign,Investment
+from .forms import CampaignForm, InvestmentForm
+from datetime import date
+from decimal import Decimal
+
 
 @login_required
 def campaign_list(request):
@@ -15,7 +17,7 @@ def campaign_list(request):
 def campaign_detail(request, id):
     campaign = get_object_or_404(Campaign, id=id)
     investor_count = campaign.investors.count()
-    left=(campaign.end_date-campaign.start_date).days
+    left=(campaign.end_date-date.today()).days
     context = {
     'campaign': campaign,
     'subscribers':investor_count,
@@ -23,7 +25,23 @@ def campaign_detail(request, id):
      }
     return render(request, 'campaign_detail.html', context)
 
-# def invest(request):
+@login_required
+def invest(request,id):
+    campaign = get_object_or_404(Campaign, id=id)
+    if request.method == 'POST':
+        amount=Decimal(request.POST.get('amount'))
+        investment=Investment.objects.create(
+            investor=request.user,
+            campaign=campaign,
+            amount=amount
+        )
+        campaign.current_amount += amount
+        campaign.save()
+        messages.success(request, 'Thank you for your investment!')
+        return redirect('dashboard')
+    else:
+        context = {'campaign': campaign}
+        return render(request, 'invest.html', context)
 
 @login_required
 def create_campaign(request):
