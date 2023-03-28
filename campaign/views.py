@@ -5,12 +5,21 @@ from .models import Campaign,Investment
 from .forms import CampaignForm, InvestmentForm
 from datetime import date
 from decimal import Decimal
-
+from django.db.models import Q
 
 @login_required
 def campaign_list(request):
     campaigns = Campaign.objects.all().order_by('-created_at')
-    context = {'campaigns': campaigns}
+    for campaign in campaigns:
+        left=(campaign.end_date-date.today()).days
+        if left<=0:
+            campaign.closed=True
+            campaign.save()
+    closed_campaigns = Campaign.objects.filter(Q(closed=True) | Q(end_date=date.today()))
+    context = {
+        'campaigns': campaigns,
+        'closed_campaigns':closed_campaigns
+    }
     return render(request, 'campaign_list.html', context)
 
 @login_required
@@ -19,13 +28,29 @@ def campaign_detail(request, id):
     # investor_count = campaign.investors.all().distinct().count()
     # investor_count = campaign.investors.all().count()
     left=(campaign.end_date-date.today()).days
+    
+    cur=(campaign.current_amount/campaign.goal_amount)*100
     context = {
     'campaign': campaign,
     # 'subscribers':investor_count,
     'left_days':left,
+    'cur':cur
      }
     return render(request, 'campaign_detail.html', context)
 
+@login_required    
+def campaign_list(request):
+    query = request.GET.get('q')
+    if query:
+        campaigns = Campaign.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+    else:
+        campaigns = Campaign.objects.all()
+    context = {
+        'campaigns': campaigns
+    }
+    return render(request, 'campaign_list.html', context)
 @login_required
 def invest(request,id):
     campaign = get_object_or_404(Campaign, id=id)

@@ -14,6 +14,7 @@ class Campaign(models.Model):
     video_link = models.URLField(blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     featured = models.BooleanField(default=False)
+    closed=models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     investors = models.ManyToManyField(User, blank=True, related_name='invested_campaigns')
     subscribers=models.IntegerField(default=0)

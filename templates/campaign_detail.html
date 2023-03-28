@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,36 +7,129 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <title>Campaign Detail</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Startapp</a>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Explore <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/campaigns">Subscribe</a>
-                </li>
-            </ul>
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Collapsible wrapper -->
+            <a class="navbar-brand" href="/">Startapp</a>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
+                <!-- Left links -->
+                <ul class="navbar-nav mb-2 mb-lg-0">
+
+
+                    <li class="nav-item navl">
+                        <a class="nav-link" href="/">Explore</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active navl">
+                        <a class="nav-link" href="/campaigns">Subscribe</a>
+                    </li>
+
+                </ul>
+                <!-- Left links -->
+            </div>
+            <div class="justify-content-end">
+                <!-- Right links -->
+                <button type="button" class="btn btn-outline-primary"><a style="text-decoration: none;"
+                        href="/logout">Logout</a></button>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
         </div>
+        <!-- Container wrapper -->
     </nav>
     <hr>
-    <h1>{{ campaign.name }}</h1>
-    <hr>
-    <p>{{ campaign.description }}</p>
-    <img src="{{ campaign.image.url }}" alt="{{ campaign.name }}">
-    <p>Subscribers: {{ campaign.subscribers }}</p>
-    <p>Left Days: {{ left_days }}</p>
-    <p>Target amount: {{ campaign.goal_amount }}</p>
-    <p>Current amount: {{ campaign.current_amount }}</p>
-    <a href="{% url 'payment' campaign.id %}">Invest</a>
+
+    <div class="container mdetail">
+        <div class="row">
+            <div class="back">
+                <a href="/campaigns/"><i class="bi bi-chevron-left"></i><span>Back</span></a></i>
+            </div>
+            <div class="cname">
+                <div class="cimg"><img src="{{ campaign.image.url }}" alt="{{ campaign.name }}"></div>
+                <h1>{{ campaign.name }}</h1>
+            </div>
+            <div class="cdesc">
+                <p>{{ campaign.description }}</p>
+            </div>
+
+            <div class="col cdet">
+                <div class="css-1fobf8d">
+                    <h5 class="css-1q75hs2">{{ campaign.subscribers }}</h5><span class="css-17jnidb">Subscribers</span>
+                </div>
+                <div class="css-1fobf8d">
+                    <h5 class="css-1q75hs2">{{ left_days }} days</h5><span class="css-17jnidb">Left to subscribe</span>
+                </div>
+                <div class="css-1fobf8d">
+                    <h5 class="css-9yhb3g">{{ cur|floatformat:2 }}%</h5><span class="css-17jnidb">Of goal
+                        raised</span>
+                </div>
+                <div class="progress mb-4" style="height: 8px;">
+                    <div class="progress-bar" role="progressbar" style="width: {{ cur|floatformat:2 }}%"
+                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <a href="{% url 'payment' campaign.id %}"><button type="button"
+                        class="btn btn-outline-dark btn-lg sub">Subscribe</button></a>
+
+                <!-- <p>Current amount: {{ campaign.current_amount }}</p> -->
+            </div>
+            <div class="col ifr">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/RchXmgZpeU8"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+
+            </div>
+        </div>
+    </div>
+    <!-- <section class="pdfv">
+
+        <div class="row mt-5">
+            <div class="pdf-container">
+                <iframe src="https://www.slideshare.net/slideshow/embed_code/key/1sUVJpiLLPc3KU" width="100%"
+                    height="500" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </section> -->
+
+    <div class="container mdetail">
+        <div class="row mt-5">
+            <div class="deal">
+
+                <span>Deat terms</span>
+                <div class="min mt-3">
+
+                    <span class="css-1lqn0d2">Min Subscription</span>
+                    <p class="css-37nqt7">₹5,000</p>
+                </div>
+                <div class="min mt-3">
+
+                    <span class="css-1lqn0d2">Target</span>
+                    <p class="css-37nqt7">₹{{ campaign.goal_amount|intcomma }}</p>
+                </div>
+                <div class="min mt-3">
+
+                    <span class="css-1lqn0d2">End Date</span>
+                    <p class="css-37nqt7">{{campaign.end_date|date:"d M Y"}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
 </body>
 
 </html>
