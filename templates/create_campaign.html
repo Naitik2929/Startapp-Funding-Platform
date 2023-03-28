@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,17 +6,59 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <title>Document</title>
 </head>
 
 <body>
-    <h1>Create a Campaign</h1>
-    <hr>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Submit</button>
-    </form>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Collapsible wrapper -->
+            <!-- <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="20" alt="MDB Logo"
+                        loading="lazy" /> -->
+            <a class="navbar-brand" href="/">
+                Startapp</a>
+            <div class="justify-content-end">
+                <!-- Right links -->
+                <button type="button" class="btn btn-outline-primary"><a style="text-decoration: none;"
+                        href="/logout">Logout</a></button>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <div class="container mt-4">
+        <div class="crh1">
+
+            <h1>Raise with Startapp</h1>
+            <p>Tell us a little about your company. This will help us understand your business better.</p>
+        </div>
+
+        <div class="crf">
+
+            <form method="post" enctype="multipart/form-data">
+                <div class="mt-5">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        <p class="mt-5">{{ field.label }}</p>
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-primary mt-5 mb-5 " type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

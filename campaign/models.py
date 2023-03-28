@@ -12,6 +12,8 @@ class Campaign(models.Model):
     # image = models.OneToOneField('Image', blank=True, null=True, on_delete=models.SET_NULL, related_name='campaign')
     image = models.ImageField(upload_to='media', blank=True, null=True)
     video_link = models.URLField(blank=True)
+    pitch_pdf = models.FileField(upload_to='media/pitches', blank=True, null=True)
+    # pitch_link = models.URLField(blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     featured = models.BooleanField(default=False)
     closed=models.BooleanField(default=False)

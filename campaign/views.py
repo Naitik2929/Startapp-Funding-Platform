@@ -9,13 +9,14 @@ from django.db.models import Q
 
 @login_required
 def campaign_list(request):
-    campaigns = Campaign.objects.all().order_by('-created_at')
-    for campaign in campaigns:
-        left=(campaign.end_date-date.today()).days
-        if left<=0:
-            campaign.closed=True
-            campaign.save()
-    closed_campaigns = Campaign.objects.filter(Q(closed=True) | Q(end_date=date.today()))
+    query = request.GET.get('q')
+    if query:
+        campaigns = Campaign.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        )
+    else:
+        campaigns = Campaign.objects.filter(closed=False).order_by('-created_at')
+    closed_campaigns = Campaign.objects.filter(closed=True).order_by('-created_at')
     context = {
         'campaigns': campaigns,
         'closed_campaigns':closed_campaigns
@@ -28,8 +29,11 @@ def campaign_detail(request, id):
     # investor_count = campaign.investors.all().distinct().count()
     # investor_count = campaign.investors.all().count()
     left=(campaign.end_date-date.today()).days
-    
+    if left<=0:
+            campaign.closed=True
+            campaign.save()
     cur=(campaign.current_amount/campaign.goal_amount)*100
+    campaign.video_link=convert_to_embed(campaign.video_link)
     context = {
     'campaign': campaign,
     # 'subscribers':investor_count,
@@ -38,19 +42,7 @@ def campaign_detail(request, id):
      }
     return render(request, 'campaign_detail.html', context)
 
-@login_required    
-def campaign_list(request):
-    query = request.GET.get('q')
-    if query:
-        campaigns = Campaign.objects.filter(
-            Q(name__icontains=query) | Q(description__icontains=query)
-        )
-    else:
-        campaigns = Campaign.objects.all()
-    context = {
-        'campaigns': campaigns
-    }
-    return render(request, 'campaign_list.html', context)
+
 @login_required
 def invest(request,id):
     campaign = get_object_or_404(Campaign, id=id)
@@ -76,6 +68,7 @@ def create_campaign(request):
         form = CampaignForm(request.POST, request.FILES)
         if form.is_valid():
             campaign = form.save(request.user)
+
             messages.success(request, 'Campaign created successfully.')
             return redirect('campaign_detail', campaign.pk)
         else:
@@ -85,3 +78,11 @@ def create_campaign(request):
 
     context = {'form': form}
     return render(request, 'create_campaign.html', context)
+
+def convert_to_embed(link):
+    if 'watch?v=' in link:
+        link = link.split('watch?v=')[1]
+    elif 'youtu.be/' in link:
+        link = link.split('youtu.be/')[1]
+    embed_link = f'https://www.youtube.com/embed/{link}'
+    return embed_link

@@ -73,7 +73,7 @@
                 </form>
             </div>
         </div>
-
+        <!-- live -->
         <div class="row featured">
             <h1>Featured campaigns</h1>
             <p>Explore what is trending</p>
@@ -96,32 +96,32 @@
                 {% endfor %}
             </div>
         </section>
-        <div class="row">
-            <div class="featured">
-                <h1>Closed campaigns</h1>
-                <p>Wall of successful startups</p>
-            </div>
-            <section class="row flist">
-                <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
-                    {% for closed_campaigns in campaigns %}
-                    <div class="col">
-                        <div class="card" style="width: 20rem;">
-                            <a href="{% url 'campaign_detail' closed_campaigns.id %}">
-                                <img class="card-img-top" src='{{closed_campaigns.image.url}}' alt="Card image cap"></a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ closed_campaigns.name }}</h5>
-                                <p class="card-text" style="height: 120px; overflow: hidden">{{
-                                    closed_campaigns.description }}
-                                </p>
-                            </div><a class="btn btn-primary" href="{% url 'campaign_detail' closed_campaigns.id %}">
-                                Invest
-                            </a>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </section>
+        <!-- closed -->
+        <div class=" row featured">
+            <h1>Closed campaigns</h1>
+            <p>Wall of successful startups</p>
         </div>
+        <section class="row flist">
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
+                {% for closed_campaign in closed_campaigns %}
+                <div class="col">
+                    <div class="card" style="width: 20rem;">
+                        <a href="{% url 'campaign_detail' closed_campaign.id %}">
+                            <img class="card-img-top" src='{{closed_campaign.image.url}}' alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ closed_campaign.name }}</h5>
+                            <p class="card-text" style="height: 120px; overflow: hidden">
+                                {{closed_campaign.description }}
+                            </p>
+                        </div><a class="btn btn-primary" href="{% url 'campaign_detail' closed_campaign.id %}">
+                            Explore
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
 
     </div>
 </body>
