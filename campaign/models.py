@@ -4,13 +4,15 @@ import datetime
 
 class Campaign(models.Model):
     name = models.CharField(max_length=200)
+    email=models.EmailField(max_length = 254,default='')
     description = models.TextField()
     goal_amount = models.IntegerField()
     current_amount = models.IntegerField(default=0)
     start_date = models.DateField(default=datetime.datetime.now)
     end_date = models.DateField()
     # image = models.OneToOneField('Image', blank=True, null=True, on_delete=models.SET_NULL, related_name='campaign')
-    image = models.ImageField(upload_to='media', blank=True, null=True)
+    image1 = models.ImageField(upload_to='media', blank=True, null=True)
+    image2 = models.ImageField(upload_to='media', blank=True, null=True)
     video_link = models.URLField(blank=True)
     pitch_pdf = models.FileField(upload_to='media/pitches', blank=True, null=True)
     # pitch_link = models.URLField(blank=True)

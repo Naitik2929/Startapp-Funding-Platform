@@ -17,41 +17,40 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #eee;">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Collapsible wrapper -->
-            <!-- <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="20" alt="MDB Logo"
-                    loading="lazy" /> -->
-            <a class="navbar-brand" href="/">
-                Startapp</a>
+            <a class="navbar-brand mx-5" style="padding: 2px;" href="/">
+                <img src="/media/media/logo.png" alt="Your logo" title="Your logo" style="height:50px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
                 <!-- Left links -->
                 <ul class="navbar-nav mb-2 mb-lg-0">
-
-
-                    <li class="nav-item navl">
+                    <li class="nav-item  navl">
                         <a class="nav-link" href="/">Explore</span>
                         </a>
                     </li>
-                    <li class="nav-item active navl">
+                    <li class="nav-item  active navl">
                         <a class="nav-link" href="/campaigns">Subscribe</a>
                     </li>
-
                 </ul>
                 <!-- Left links -->
             </div>
             <div class="justify-content-end">
                 <!-- Right links -->
-                <button type="button" class="btn btn-outline-primary"><a style="text-decoration: none;"
-                        href="/logout">Logout</a></button>
+                <a href="/logout"><button type="button" class="btn btn-outline-primary">Logout</button>
+                </a>
                 <!-- Left links -->
             </div>
             <!-- Collapsible wrapper -->
         </div>
         <!-- Container wrapper -->
     </nav>
-    <hr>
     <div class="container mainc">
 
         <div class=" row search">
@@ -84,11 +83,12 @@
                 <div class="col">
                     <div class="card" style="width: 20rem;">
                         <a href="{% url 'campaign_detail' campaign.id %}">
-                            <img class="card-img-top" src='{{campaign.image.url}}' alt="Card image cap"></a>
+                            <img class="card-img-top" src='{{campaign.image2.url}}' alt="Card image cap"></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ campaign.name }}</h5>
                             <p class="card-text" style="height: 120px; overflow: hidden">{{ campaign.description }}</p>
-                        </div><a class="btn btn-primary" href="{% url 'campaign_detail' campaign.id %}">
+                        </div><a class="btn btn-primary mx-2 my-2 mb-2 mt-2"
+                            href="{% url 'campaign_detail' campaign.id %}">
                             Invest
                         </a>
                     </div>
@@ -107,7 +107,7 @@
                 <div class="col">
                     <div class="card" style="width: 20rem;">
                         <a href="{% url 'campaign_detail' closed_campaign.id %}">
-                            <img class="card-img-top" src='{{closed_campaign.image.url}}' alt="Card image cap"></a>
+                            <img class="card-img-top" src='{{closed_campaign.image2.url}}' alt="Card image cap"></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ closed_campaign.name }}</h5>
                             <p class="card-text" style="height: 120px; overflow: hidden">

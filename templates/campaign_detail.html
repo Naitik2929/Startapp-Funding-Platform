@@ -18,38 +18,40 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #eee;">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Collapsible wrapper -->
-            <a class="navbar-brand" href="/">Startapp</a>
+            <a class="navbar-brand mx-5" style="padding: 2px;" href="/">
+                <img src="/media/media/logo.png" alt="Your logo" title="Your logo" style="height:50px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
                 <!-- Left links -->
                 <ul class="navbar-nav mb-2 mb-lg-0">
-
-
-                    <li class="nav-item navl">
+                    <li class="nav-item  navl">
                         <a class="nav-link" href="/">Explore</span>
                         </a>
                     </li>
                     <li class="nav-item active navl">
                         <a class="nav-link" href="/campaigns">Subscribe</a>
                     </li>
-
                 </ul>
                 <!-- Left links -->
             </div>
             <div class="justify-content-end">
                 <!-- Right links -->
-                <button type="button" class="btn btn-outline-primary"><a style="text-decoration: none;"
-                        href="/logout">Logout</a></button>
+                <a href="/logout"><button type="button" class="btn btn-outline-primary">Logout</button>
+                </a>
                 <!-- Left links -->
             </div>
             <!-- Collapsible wrapper -->
         </div>
         <!-- Container wrapper -->
     </nav>
-    <hr>
 
     <div class="container mdetail">
         <div class="row">
@@ -57,7 +59,7 @@
                 <a href="/campaigns/"><i class="bi bi-chevron-left"></i><span>Back</span></a></i>
             </div>
             <div class="cname">
-                <div class="cimg"><img src="{{ campaign.image.url }}" alt="{{ campaign.name }}"></div>
+                <div class="cimg"><img src="{{ campaign.image1.url }}" alt="{{ campaign.name }}"></div>
                 <h1>{{ campaign.name }}</h1>
             </div>
             <div class="cdesc">

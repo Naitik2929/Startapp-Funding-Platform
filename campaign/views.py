@@ -6,7 +6,8 @@ from .forms import CampaignForm, InvestmentForm
 from datetime import date
 from decimal import Decimal
 from django.db.models import Q
-
+from django.core.mail import send_mail
+from django.conf import settings
 @login_required
 def campaign_list(request):
     query = request.GET.get('q')
@@ -57,6 +58,14 @@ def invest(request,id):
         campaign.subscribers+=1
         campaign.save()
         messages.success(request, 'Thank you for your investment!')
+        print(campaign.email)
+        if campaign.current_amount>=campaign.goal_amount:
+            send_mail('sub',
+                'helloo',
+                'ahmed1077mehta@gmail.com',
+                ['naitikpatel107@gmail.com'],
+                fail_silently=False,
+            )
         return redirect('dashboard')
     else:
         context = {'campaign': campaign}
@@ -78,6 +87,17 @@ def create_campaign(request):
 
     context = {'form': form}
     return render(request, 'create_campaign.html', context)
+
+def closing_soon(request):
+    campaigns = Campaign.objects.filter(closed=False).order_by('-created_at')
+    closing_campaigns = Campaign.objects.filter(closed=False,end_date=date.today() + timedelta(days=7))
+    context = {
+        'campaigns': campaigns,
+        'closing_campaigns':closing_campaigns
+    }
+    return render(request, 'campaign_list.html', context)
+
+
 
 def convert_to_embed(link):
     if 'watch?v=' in link:

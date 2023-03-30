@@ -49,3 +49,6 @@ def logout_request(request):
     logout(request)
     messages.info(request, "You have successfully logout.")
     return redirect("authen:home")
+
+def about_view(request):
+    return render(request, "about.html")

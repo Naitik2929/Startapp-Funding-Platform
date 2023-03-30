@@ -16,11 +16,18 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #eee;">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Collapsible wrapper -->
-            <a class="navbar-brand" href="/">Startapp</a>
+            <a class="navbar-brand mx-5 nal" style="padding: 2px;" href="/">
+                <img src="/media/media/logo.png" alt="Your logo" title="Your logo" style="height:50px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse justify-content-center" id="navbarCenteredExample">
                 <!-- Left links -->
                 <ul class="navbar-nav mb-2 mb-lg-0">
@@ -36,28 +43,78 @@
             </div>
             <div class="justify-content-end">
                 <!-- Right links -->
-                <button type="button" class="btn btn-outline-primary"><a style="text-decoration: none;"
-                        href="/logout">Logout</a></button>
+                <a href="/logout"><button type="button" class="btn btn-outline-primary">Logout</button>
+                </a>
                 <!-- Left links -->
             </div>
             <!-- Collapsible wrapper -->
         </div>
         <!-- Container wrapper -->
     </nav>
-    <hr>
-    <div class="container">
-        👋Welcome, {{ user.username }}!
-        <section>
-            <p>Your invested campaigns:</p>
-            <ul>
+    <div class="container mainc">
+        <div class="row mt-5">
+            <h3>
+                👋Welcome, {{ user.username }}!
+            </h3>
+        </div>
+        <div class="row dsearch">
+            <h1>Your invested campaigns</h1>
+        </div>
+        <section class="row flist">
+            {% if invested_campaigns %}
+
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
                 {% for campaign in invested_campaigns %}
-                <!-- <li>{{ campaign.name }}</li> -->
-                <li><a href="/campaigns/{{campaign.id}}">{{ campaign.name }}</a></li>
-                {% empty %}
-                <li>You haven't invested in any campaigns yet.</li>
+                <div class="col mt-0">
+                    <div class="card" style="width: 20rem;">
+                        <a href="{% url 'campaign_detail' campaign.id %}">
+                            <img class="card-img-top" src='{{campaign.image2.url}}' alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ campaign.name }}</h5>
+                            <p class="card-text" style="height: 120px; overflow: hidden">{{ campaign.description }}
+                            </p>
+                        </div><a class="btn btn-primary mx-2 my-2 mb-2 mt-2"
+                            href="{% url 'campaign_detail' campaign.id %}">
+                            Invest
+                        </a>
+                    </div>
+                </div>
                 {% endfor %}
-            </ul>
+                {% else %}
+                <spna>You have not invested in any campaign yet !</spna>
+                {% endif %}
         </section>
+        <div class="row dsearch mt-4">
+            <h1>Closing soon</h1>
+        </div>
+        <section class="row flist">
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
+                {% for campaign in campaigns_closing_soon %}
+                <div class="col mt-0">
+                    <div class="card" style="width: 20rem;">
+                        <a href="{% url 'campaign_detail' campaign.id %}">
+                            <img class="card-img-top" src='{{campaign.image2.url}}' alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ campaign.name }}</h5>
+                            <p class="card-text" style="height: 120px; overflow: hidden">{{ campaign.description }}
+                            </p>
+                        </div><a class="btn btn-primary" href="{% url 'campaign_detail' campaign.id %}">
+                            Invest
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+        </section>
+        <!-- <ul>
+                {% for campaign in invested_campaigns %} -->
+        <!-- <li>{{ campaign.name }}</li> -->
+        <!-- <li><a href="/campaigns/{{campaign.id}}">{{ campaign.name }}</a></li>
+            {% empty %}
+            <li>You haven't invested in any campaigns yet.</li>
+            {% endfor %}
+            </ul> -->
+
+    </div>
     </div>
     <!-- <h2><a href="/campaigns/">Browse campaigns</a></h2> -->
 

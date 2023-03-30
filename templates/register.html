@@ -2,14 +2,128 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <title>Register</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/temp.css">
 </head>
 
 <body>
-    <div class="container py-5">
+    <div class="w3l-bootstrap-header fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light p-2">
+            <div class="container">
+                <!-- <a class="navbar-brand" href="index.html"><span class="fa fa-diamond"></span>StartApp</a> -->
+                <a class="navbar-brand" href="/">
+                    <img src="/media/media/logo.png" alt="Your logo" title="Your logo" style="height:50px;" />
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </div>
+    <div class="w3l-index-block1">
+        <div class="content py-5">
+            <div class="container">
+                <section class=" mal w3l-index-block1">
+                    <div class="container-fluid h-custom">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 logf crfl">
+                                <h3 class="d-flex justify-content-center align-items-center">Register</h3>
+                                <form method="POST" action="">
+                                    <div class="mt-3">
+                                        {% csrf_token %}
+                                        {{register_form.as_p}}
+                                        <div class="form-group">
+                                            <p class="mt-3">{{ field.label }}</p>
+                                            {{ field }}
+                                        </div>
+                                    </div>
+
+                                    <button class="btn-lg log mt-3" type="submit">Register</button>
+                                </form>
+                                <hr class="css-19mvjqo">
+
+                                <p style="font-weight: 400;">If you already have an account <a href="/login"
+                                        style="text-decoration: none;color: rgb(16, 129, 232);font-weight:bold;">Login
+                                        instead</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <section class="w3l-market-footer">
+        <footer class="footer-28">
+            <div class="footer-bg-layer">
+                <div class="container py-lg-3">
+                    <div class="container" style="width: 90%;max-width:900px;margin: 0 auto;">
+                        <p class="text-center">the <strong>StartApp</strong> platform</p>
+                    </div>
+                    <div class="footer-top-28">
+                        <div class="footer-list-28 mt-3">
+                            <div class="container" style="width: 90%;max-width:900px;margin: 0 auto;">
+                                <p class="copy-footer-28 text-center"> &copy; 2020 Market. All Rights Reserved. Design
+                                    by <a href="#">StartApp</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="midd-footer-28 align-center py-lg-4">
+                    <div style="width: 90%;max-width:900px;margin: 0 auto;">
+                        <p style="font-size: 11px">
+                            StartApp is a software as a service funding platform. StartApp is not a registered
+                            broker-dealer and does not offer investment advice or advise on the raising of capital
+                            through securities offerings. StartApp does not recommend or otherwise suggest that any
+                            investor make an investment in a particular company, or that any company offer securities to
+                            a particular investor. StartApp takes no part in the negotiation or execution of
+                            transactions for the purchase or sale of securities, and at no time has possession of funds
+                            or securities. No securities transactions are executed or negotiated on or through the
+                            StartApp platform. StartApp receives no compensation in connection with the purchase or sale
+                            of securities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">&#10548;</button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- <div class="container py-5">
         <h1>Register</h1>
         <form method="POST" action="">
             {% csrf_token %} {{register_form.as_p}}
@@ -18,7 +132,7 @@
         <p class="text-center">
             If you already have an account, <a href="login">login</a> instead.
         </p>
-    </div>
+    </div> -->
 </body>
 
 </html>
