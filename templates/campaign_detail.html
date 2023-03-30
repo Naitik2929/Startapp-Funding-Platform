@@ -74,12 +74,13 @@
                     <h5 class="css-1q75hs2">{{ left_days }} days</h5><span class="css-17jnidb">Left to subscribe</span>
                 </div>
                 <div class="css-1fobf8d">
-                    <h5 class="css-9yhb3g">{{ cur|floatformat:2 }}%</h5><span class="css-17jnidb">Of goal
+                    <h5 id="goal" class="css-9yhb3g">{{ cur|floatformat:2 }}%</h5><span class="css-17jnidb">Of goal
                         raised</span>
                 </div>
                 <div class="progress mb-4" style="height: 8px;">
-                    <div class="progress-bar" role="progressbar" style="width: {{ cur|floatformat:2 }}%"
-                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id="progress-bar" class="progress-bar" role="progressbar"
+                        style="width: {{ cur|floatformat:2 }}%" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
                 {% if campaign.closed %}
                 <button type="button" class="btn btn-outline-dark btn-lg csub">Subscirbe</button>
@@ -134,7 +135,19 @@
 
     </div>
 
-
+    <script>
+        var progressBar = document.getElementById("progress-bar");
+        var goal = document.getElementById("goal")
+        var progressValue = {{ cur }};
+        if (progressValue >= 100) {
+            goal.style.color = "rgb(9, 149, 48)";
+            progressBar.style.backgroundColor = "rgb(9, 149, 48)";
+        } else {
+            goal.style.color = "rgb(0, 102, 235)";
+            progressBar.style.backgroundColor = "rgb(0, 102, 235)";
+        }
+        progressBar.style.width = progressValue + "%";
+    </script>
 </body>
 
 </html>

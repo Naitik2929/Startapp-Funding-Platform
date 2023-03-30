@@ -15,6 +15,20 @@
     padding: 20px;
 }
 
+body {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    /* adjust this value as needed */
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
 a.nav-link {
     font-size: 17px;
 }
@@ -557,4 +571,38 @@ hr {
 
 .nal {
     margin-left: 5px;
+}
+
+.w3l-market-footer #movetop {
+    display: none;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    background: #377dff;
+    padding: 0;
+    line-height: 36px;
+    border-radius: 4px;
+    transition: 0.3s ease-out;
+}
+
+.w3l-market-footer #movetop:hover {
+    background: #151965;
+    transform: translate3d(0, -5px, 0);
+    -webkit-transform: translate3d(0, -5px, 0);
+    transition: 0.3s ease-out;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
 }

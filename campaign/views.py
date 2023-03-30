@@ -6,6 +6,8 @@ from .forms import CampaignForm, InvestmentForm
 from datetime import date
 from decimal import Decimal
 from django.db.models import Q
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.conf import settings
 @login_required
@@ -30,7 +32,8 @@ def campaign_detail(request, id):
     # investor_count = campaign.investors.all().distinct().count()
     # investor_count = campaign.investors.all().count()
     left=(campaign.end_date-date.today()).days
-    if left<=0:
+    if left<=0 and not campaign.closed:
+            send_investor_list(campaign)
             campaign.closed=True
             campaign.save()
     cur=(campaign.current_amount/campaign.goal_amount)*100
@@ -43,34 +46,49 @@ def campaign_detail(request, id):
      }
     return render(request, 'campaign_detail.html', context)
 
+def send_investor_list(campaign):
+    investors = Investment.objects.filter(campaign=campaign)
+    investor_list = []
+    for investor in investors:
+        investor_list.append({'name': investor.investor.username, 'email': investor.investor.email})
+
+    subject = f'List of Investors for Campaign {campaign.name}'
+    body = '\n'.join([f"{i['name']}: {i['email']}" for i in investor_list])
+    from_email = 'noreply@example.com'
+    to_email = [campaign.email]
+
+    email = EmailMessage(subject, body, from_email, to_email)
+    email.send()
 
 @login_required
-def invest(request,id):
+def invest(request, id):
     campaign = get_object_or_404(Campaign, id=id)
     if request.method == 'POST':
-        amount=Decimal(request.POST.get('amount'))
-        investment=Investment.objects.create(
+        amount = Decimal(request.POST.get('amount'))
+        investment = Investment.objects.create(
             investor=request.user,
             campaign=campaign,
             amount=amount
         )
         campaign.current_amount += amount
-        campaign.subscribers+=1
+        campaign.subscribers += 1
         campaign.save()
         messages.success(request, 'Thank you for your investment!')
-        print(campaign.email)
-        if campaign.current_amount>=campaign.goal_amount:
-            send_mail('sub',
-                'helloo',
-                'ahmed1077mehta@gmail.com',
+
+        if campaign.current_amount >= campaign.goal_amount:
+            send_mail(
+                'Your campaign has reached its goal!',
+                f'Congratulations, your campaign "{campaign.name}" has reached its goal of {campaign.goal_amount}.',
+                settings.EMAIL_HOST_USER,
                 ['naitikpatel107@gmail.com'],
                 fail_silently=False,
             )
+
         return redirect('dashboard')
     else:
         context = {'campaign': campaign}
         return render(request, 'invest.html', context)
-
+        
 @login_required
 def create_campaign(request):
     if request.method == 'POST':
