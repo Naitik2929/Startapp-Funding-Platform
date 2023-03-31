@@ -75,7 +75,7 @@ def invest(request, id):
         campaign.save()
         messages.success(request, 'Thank you for your investment!')
 
-        if campaign.current_amount >= campaign.goal_amount:
+        if campaign.current_amount >= campaign.goal_amount and not campaign.email_sent:
             send_mail(
                 'Your campaign has reached its goal!',
                 f'Congratulations, your campaign "{campaign.name}" has reached its goal of {campaign.goal_amount}.',
@@ -83,13 +83,15 @@ def invest(request, id):
                 ['naitikpatel107@gmail.com'],
                 fail_silently=False,
             )
-
+            campaign.email_sent=True
+            campaign.save()
+        
         return redirect('dashboard')
     else:
         context = {'campaign': campaign}
         return render(request, 'invest.html', context)
         
-@login_required
+
 def create_campaign(request):
     if request.method == 'POST':
         form = CampaignForm(request.POST, request.FILES)

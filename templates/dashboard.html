@@ -12,7 +12,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <title>Document</title>
+    <title>Startapp-Invest Securely</title>
 </head>
 
 <body>
@@ -41,10 +41,15 @@
                 </ul>
                 <!-- Left links -->
             </div>
-            <div class="justify-content-end">
+            <div class="justify-content-end" style="font-family: Baikal, Inter, sans-serif;">
                 <!-- Right links -->
+                <a href="/campaigns/create" style="text-decoration: none;"><button type="button"
+                        class="btn btn-outline-primary mx-2">Create
+                        Campaign</button>
+                </a>
                 <a href="/logout"><button type="button" class="btn btn-outline-primary">Logout</button>
                 </a>
+
                 <!-- Left links -->
             </div>
             <!-- Collapsible wrapper -->
@@ -98,7 +103,8 @@
                             <h5 class="card-title">{{ campaign.name }}</h5>
                             <p class="card-text" style="height: 120px; overflow: hidden">{{ campaign.description }}
                             </p>
-                        </div><a class="btn btn-primary" href="{% url 'campaign_detail' campaign.id %}">
+                        </div><a class="btn btn-primary mx-2 my-2 mb-2 mt-2"
+                            href="{% url 'campaign_detail' campaign.id %}">
                             Invest
                         </a>
                     </div>
@@ -116,6 +122,69 @@
 
     </div>
     </div>
+    <!-- <h2><a href="/campaigns/">Browse campaigns</a></h2> -->
+
+    {% comment %} footer {% endcomment %}
+
+    <section class="w3l-market-footer">
+        <footer class="footer-28">
+            <div class="footer-bg-layer">
+                <div class="container py-lg-3">
+                    <div class="container" style="width: 90%;max-width:900px;margin: 0 auto;">
+                        <p class="text-center">the <strong>StartApp</strong> platform</p>
+                    </div>
+                    <div class="footer-top-28">
+                        <div class="footer-list-28 mt-3">
+                            <div class="container" style="width: 90%;max-width:900px;margin: 0 auto;">
+                                <p class="copy-footer-28 text-center"> &copy; 2020 Market. All Rights Reserved. Design
+                                    by <a href="#">StartApp</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="midd-footer-28 align-center py-lg-4">
+                    <div style="width: 90%;max-width:900px;margin: 0 auto;">
+                        <p style="font-size: 11px">
+                            StartApp is a software as a service funding platform. StartApp is not a registered
+                            broker-dealer and does not offer investment advice or advise on the raising of capital
+                            through securities offerings. StartApp does not recommend or otherwise suggest that any
+                            investor make an investment in a particular company, or that any company offer securities to
+                            a particular investor. StartApp takes no part in the negotiation or execution of
+                            transactions for the purchase or sale of securities, and at no time has possession of funds
+                            or securities. No securities transactions are executed or negotiated on or through the
+                            StartApp platform. StartApp receives no compensation in connection with the purchase or sale
+                            of securities.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">&#10548;</button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+        <!-- /move top -->
+    </section>
+
 
 </body>
 

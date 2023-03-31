@@ -96,6 +96,7 @@ button.btn.btn-outline-primary {
     gap: 1rem; */
 }
 
+
 .mainc .flist ul {
     list-style-type: none;
     margin: 0;
@@ -279,6 +280,15 @@ hr {
     font-family: Inter, sans-serif;
     font-weight: 400;
     color: rgb(58, 58, 58);
+
+}
+
+.description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .mdetail iframe {
@@ -312,6 +322,44 @@ hr {
     font-family: Baikal, Inter, sans-serif;
     letter-spacing: -0.025em;
     font-weight: 900;
+}
+
+.w3l-market-footer {
+    margin-top: 15rem;
+}
+
+.w3l-market-footer .copy-footer-28 a {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.w3l-market-footer #movetop {
+    display: none;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    background: #377dff;
+    padding: 0;
+    line-height: 36px;
+    border-radius: 4px;
+    transition: 0.3s ease-out;
+}
+
+.w3l-market-footer #movetop:hover {
+    background: #151965;
+    transform: translate3d(0, -5px, 0);
+    -webkit-transform: translate3d(0, -5px, 0);
+    transition: 0.3s ease-out;
 }
 
 .css-9yhb3g {
