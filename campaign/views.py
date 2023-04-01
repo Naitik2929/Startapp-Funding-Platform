@@ -18,7 +18,7 @@ def campaign_list(request):
             Q(name__icontains=query) | Q(description__icontains=query)
         )
     else:
-        campaigns = Campaign.objects.filter(closed=False).order_by('-created_at')
+        campaigns = Campaign.objects.filter(closed=False).order_by('-current_amount')
     closed_campaigns = Campaign.objects.filter(closed=True).order_by('-created_at')
     context = {
         'campaigns': campaigns,
@@ -47,15 +47,27 @@ def campaign_detail(request, id):
     return render(request, 'campaign_detail.html', context)
 
 def send_investor_list(campaign):
-    investors = Investment.objects.filter(campaign=campaign)
-    investor_list = []
-    for investor in investors:
-        investor_list.append({'name': investor.investor.username, 'email': investor.investor.email})
+    # Get all investments for the campaign
+    investments = Investment.objects.filter(campaign=campaign)
 
-    subject = f'List of Investors for Campaign {campaign.name}'
-    body = '\n'.join([f"{i['name']}: {i['email']}" for i in investor_list])
+    # Create a list of dictionaries with investor information
+    investor_list = []
+    for investment in investments:
+        investor_list.append({
+            'name': investment.investor.username,
+            'email': investment.investor.email,
+            'amount': investment.amount
+        })
+
+    # Create the email message
+    subject = f'List of Investors for Campaign "{campaign.name}"'
+    body = 'Dear Administrator,\n\n' \
+           'Please find below the list of investors for the campaign:\n\n'
+    for investor in investor_list:
+        body += f'- Name: {investor["name"]}\n  Email: {investor["email"]}\n  Amount: {investor["amount"]}\n\n'
+    body += 'Thank you for your attention.\n\nBest regards,\nThe STARTAPP Team'
     from_email = 'noreply@example.com'
-    to_email = [campaign.email]
+    to_email = ['naitikpatel107@gmail.com']
 
     email = EmailMessage(subject, body, from_email, to_email)
     email.send()
