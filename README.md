@@ -23,7 +23,6 @@ Startapp is a crowdfunding platform where emerging entrepreneurs can create camp
 1. Clone the repository to your local machine.
 2. Create a virtual environment using `virtualenv` or `conda`.
 3. Install the dependencies using `pip install -r requirements.txt`.
-4. Set up the PostgreSQL database and update the settings file with your database details.
 5. Run the migrations using `python manage.py migrate`.
 6. Start the development server using `python manage.py runserver`.
 
