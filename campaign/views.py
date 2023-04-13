@@ -10,6 +10,9 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.conf import settings
+from django.http import HttpResponse, Http404
+import os
+
 @login_required
 def campaign_list(request):
     query = request.GET.get('q')
@@ -138,3 +141,5 @@ def convert_to_embed(link):
         link = link.split('youtu.be/')[1]
     embed_link = f'https://www.youtube.com/embed/{link}'
     return embed_link
+
+    

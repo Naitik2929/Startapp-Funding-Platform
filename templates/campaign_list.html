@@ -80,15 +80,15 @@
         <section class="row flist">
             <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
                 {% for campaign in campaigns %}
-                <div class="col">
-                    <div class="card" style="width: 20rem;">
+                <div class="col mb-4">
+                    <div class="card h-100">
                         <a href="{% url 'campaign_detail' campaign.id %}">
-                            <img class="card-img-top" src='{{campaign.image2.url}}' alt="Card image cap"></a>
+                            <img class="card-img-top" src="{{ campaign.image2.url }}" alt="Card image cap"></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ campaign.name }}</h5>
-                            <p class="card-text" style="height: 120px; overflow: hidden">{{ campaign.description }}</p>
-                        </div><a class="btn btn-primary mx-2 my-2 mb-2 mt-2"
-                            style="font-family: Baikal, Inter, sans-serif;"
+                            <p class="card-text">{{ campaign.description }}</p>
+                        </div>
+                        <a class="btn btn-primary mx-2 my-2 mb-2 mt-auto"
                             href="{% url 'campaign_detail' campaign.id %}">
                             Invest
                         </a>
@@ -105,17 +105,15 @@
         <section class="row flist">
             <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
                 {% for closed_campaign in closed_campaigns %}
-                <div class="col">
-                    <div class="card" style="width: 20rem;">
+                <div class="col mb-4">
+                    <div class="card h-100">
                         <a href="{% url 'campaign_detail' closed_campaign.id %}">
-                            <img class="card-img-top" src='{{closed_campaign.image2.url}}' alt="Card image cap"></a>
+                            <img class="card-img-top" src="{{ closed_campaign.image2.url }}" alt="Card image cap"></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ closed_campaign.name }}</h5>
-                            <p class="card-text" style="height: 120px; overflow: hidden">
-                                {{closed_campaign.description }}
-                            </p>
-                        </div><a class="btn btn-primary mx-2 my-2 mb-2 mt-2"
-                            style="font-family: Baikal, Inter, sans-serif;"
+                            <p class="card-text">{{ closed_campaign.description }}</p>
+                        </div>
+                        <a class="btn btn-primary mx-2 my-2 mb-2 mt-2" style="font-family: Baikal, Inter, sans-serif;"
                             href="{% url 'campaign_detail' closed_campaign.id %}">
                             Explore
                         </a>

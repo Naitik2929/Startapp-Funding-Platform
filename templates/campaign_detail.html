@@ -37,7 +37,7 @@
                         </a>
                     </li>
                     <li class="nav-item active navl">
-                        <a class="nav-link" href="/campaigns">Subscribe</a>
+                        <a class="nav-link ac" href="/campaigns">Subscribe</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -71,7 +71,7 @@
                     <h5 class="css-1q75hs2">{{ campaign.subscribers }}</h5><span class="css-17jnidb">Subscribers</span>
                 </div>
                 <div class="css-1fobf8d">
-                    <h5 class="css-1q75hs2">{{ left_days }} days</h5><span class="css-17jnidb">Left to subscribe</span>
+                    <h5 class="css-1q75hs2">{{ left_days}}</h5><span class="css-17jnidb">Days left to subscribe</span>
                 </div>
                 <div class="css-1fobf8d">
                     <h5 id="goal" class="css-9yhb3g">{{ cur|floatformat:2 }}%</h5><span class="css-17jnidb">Of goal
@@ -114,7 +114,7 @@
         <div class="row mt-5">
             <div class="deal">
 
-                <span>Deat terms</span>
+                <span>Deal terms</span>
                 <div class="min mt-3">
 
                     <span class="css-1lqn0d2">Min Subscription</span>
@@ -132,7 +132,18 @@
                 </div>
             </div>
         </div>
-
+        {% if campaign.pitch_pdf %}
+        <div class="row mt-5">
+            <div class="deal">
+                <span>Download Pitch</span>
+                <div class="min mt-3">
+                    <a href="/media/{{campaign.pitch_pdf}}" download>
+                        <i class="bi bi-download"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 
     <script>
@@ -160,7 +171,8 @@
                     <div class="footer-top-28">
                         <div class="footer-list-28 mt-3">
                             <div class="container" style="width: 90%;max-width:900px;margin: 0 auto;">
-                                <p class="copy-footer-28 text-center"> &copy; 2022 Market. All Rights Reserved. Design
+                                <p class="copy-footer-28 text-center"> &copy; 2022 Market. All Rights Reserved.
+                                    Design
                                     by <a href="#">StartApp</a></p>
                             </div>
                         </div>
@@ -172,11 +184,14 @@
                             StartApp is a software as a service funding platform. StartApp is not a registered
                             broker-dealer and does not offer investment advice or advise on the raising of capital
                             through securities offerings. StartApp does not recommend or otherwise suggest that any
-                            investor make an investment in a particular company, or that any company offer securities to
+                            investor make an investment in a particular company, or that any company offer
+                            securities to
                             a particular investor. StartApp takes no part in the negotiation or execution of
-                            transactions for the purchase or sale of securities, and at no time has possession of funds
+                            transactions for the purchase or sale of securities, and at no time has possession of
+                            funds
                             or securities. No securities transactions are executed or negotiated on or through the
-                            StartApp platform. StartApp receives no compensation in connection with the purchase or sale
+                            StartApp platform. StartApp receives no compensation in connection with the purchase or
+                            sale
                             of securities.
                         </p>
                     </div>

@@ -70,30 +70,35 @@
 
             <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
                 {% for campaign in invested_campaigns %}
-                <div class="col mt-4">
-                    <div class="card" style="width: 20rem;">
+                <div class="col mb-4">
+                    <div class="card h-100">
                         <a href="{% url 'campaign_detail' campaign.id %}">
-                            <img class="card-img-top" src='{{campaign.image2.url}}' alt="Card image cap"></a>
+                            <img class="card-img-top" src="{{ campaign.image2.url }}" alt="Card image cap"></a>
                         <div class="card-body">
                             <h5 class="card-title">{{ campaign.name }}</h5>
-                            <p class="card-text" style="height: 120px; overflow: hidden">{{ campaign.description }}
-                            </p>
-                        </div><a class="btn btn-primary mx-2 my-2 mb-2 mt-2"
+                            <p class="card-text">{{ campaign.description }}</p>
+                        </div>
+                        <a class="btn btn-primary mx-2 my-2 mb-2 mt-auto"
                             href="{% url 'campaign_detail' campaign.id %}">
                             Invest
                         </a>
                     </div>
                 </div>
                 {% endfor %}
-                {% else %}
-                <spna>You have not invested in any campaign yet !</spna>
-                {% endif %}
+            </div>
+
+
+            {% else %}
+            <spna>You have not invested in any campaign yet !</spna>
+            {% endif %}
         </section>
         <div class="row dsearch mt-4">
             <h1>Closing soon</h1>
         </div>
         <section class="row flist">
-            <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
+
+
+            <!-- <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
                 {% for campaign in campaigns_closing_soon %}
                 <div class="col mt-0">
                     <div class="card" style="width: 20rem;">
@@ -110,6 +115,26 @@
                     </div>
                 </div>
                 {% endfor %}
+            </div> -->
+
+            <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:0px;">
+                {% for campaign in campaigns_closing_soon %}
+                <div class="col mb-4">
+                    <div class="card h-100">
+                        <a href="{% url 'campaign_detail' campaign.id %}">
+                            <img class="card-img-top" src="{{ campaign.image2.url }}" alt="Card image cap"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ campaign.name }}</h5>
+                            <p class="card-text">{{ campaign.description }}</p>
+                        </div>
+                        <a class="btn btn-primary mx-2 my-2 mb-2 mt-auto"
+                            href="{% url 'campaign_detail' campaign.id %}">
+                            Invest
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </section>
         <!-- <ul>
                 {% for campaign in invested_campaigns %} -->
