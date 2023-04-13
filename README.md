@@ -16,7 +16,6 @@ Startapp is a crowdfunding platform where emerging entrepreneurs can create camp
 - Python 3.9
 - Django 3.2
 - HTML/CSS/JavaScript
-- PostgreSQL
 
 ## Installation
 
