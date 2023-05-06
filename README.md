@@ -17,6 +17,18 @@ Startapp is a crowdfunding platform where emerging entrepreneurs can create camp
 - Django 3.2
 - HTML/CSS/JavaScript
 
+## Screenshots
+![image](https://user-images.githubusercontent.com/94118508/236617139-89aa0f5c-dcf4-4397-8796-23780c4a71b3.png)
+![image](https://user-images.githubusercontent.com/94118508/236617161-a234e2f2-dc4a-44bb-ade1-340da3d68d4f.png)
+![image](https://user-images.githubusercontent.com/94118508/236617211-720e9edd-4819-40c9-bc7f-dd150aada8dc.png)
+![image](https://user-images.githubusercontent.com/94118508/236617220-1a9e004f-f744-488c-9218-a89c1fd95d3b.png)
+![image](https://user-images.githubusercontent.com/94118508/236617230-e6ed92da-158d-49fb-a960-d64b2f131f05.png)
+![image](https://user-images.githubusercontent.com/94118508/236617310-28405a60-c496-4b4a-b48c-cca6347513ae.png)
+![image](https://user-images.githubusercontent.com/94118508/236617318-4d84a401-742f-4127-b209-79198a54f58d.png)
+![image](https://user-images.githubusercontent.com/94118508/236617336-ac1fa7ad-4c2e-4841-87fd-a414224e9e24.png)
+![image](https://user-images.githubusercontent.com/94118508/236617353-0b18ef07-7e7e-4897-8c10-96269e648a4d.png)
+
+
 ## Installation
 
 1. Clone the repository to your local machine.
