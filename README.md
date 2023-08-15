@@ -17,7 +17,7 @@ Startapp is a crowdfunding platform where emerging entrepreneurs can create camp
 - Django 3.2
 - HTML/CSS/JavaScript
 
-## Lee's see the project
+## Let's see the project
 ![image](https://user-images.githubusercontent.com/94118508/236617139-89aa0f5c-dcf4-4397-8796-23780c4a71b3.png)
 ![image](https://user-images.githubusercontent.com/94118508/236617161-a234e2f2-dc4a-44bb-ade1-340da3d68d4f.png)
 ![image](https://user-images.githubusercontent.com/94118508/236617211-720e9edd-4819-40c9-bc7f-dd150aada8dc.png)
